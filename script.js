@@ -1,11 +1,20 @@
+const buttons = document.querySelectorAll(".hero-btn");
 
-const sections = document.querySelectorAll("section");
+buttons.forEach(btn => {
 
-window.addEventListener("scroll", () => {
-    sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-            sec.classList.add("show");
-        }
-    });
+btn.addEventListener("mousemove", e => {
+
+const rect = btn.getBoundingClientRect();
+
+const x = e.clientX - rect.left - rect.width / 2;
+const y = e.clientY - rect.top - rect.height / 2;
+
+btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+
+});
+
+btn.addEventListener("mouseleave", () => {
+btn.style.transform = "translate(0,0)";
+});
+
 });
