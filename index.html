@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryan Khurana | AI Integration Engineer</title>
+<meta name="description" content="Aryan Khurana - AI Integration Engineer. Building intelligent systems, RAG pipelines, multilingual AI applications, and mentoring the next generation of engineers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#06060a;--abyss:#09090f;--chamber:#0d0d16;--panel:#11111c;--surface:#171724;
+  --amber:#e8a030;--amber-bright:#f5b84a;--amber-dim:#c4812a;
+  --amber-glow:rgba(232,160,48,0.12);--amber-glow-soft:rgba(232,160,48,0.06);
+  --rust:#c45c1e;--rust-bright:#e06d28;--cream:#f2ede4;--parchment:#d4c9b4;--muted:#8a8070;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Syne',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --border:rgba(232,160,48,0.12);--border-dim:rgba(242,237,228,0.06);
+}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--cream);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--amber);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s;mix-blend-mode:screen;}
+.cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(232,160,48,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.08s linear,width 0.3s,height 0.3s,border-color 0.3s;}
+body:has(a:hover) .cursor{width:16px;height:16px;background:var(--amber-bright)}
+body:has(a:hover) .cursor-ring{width:48px;height:48px;border-color:rgba(232,160,48,0.7)}
+.bg-texture{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(232,160,48,0.04) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 85% 80%,rgba(196,92,30,0.03) 0%,transparent 55%);}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 7%;display:flex;align-items:center;justify-content:space-between;transition:background 0.5s,backdrop-filter 0.5s,border-bottom 0.5s;border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(6,6,10,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-wordmark{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);opacity:0.85;text-decoration:none;}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.38;transition:opacity 0.25s,color 0.25s;}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.nav-menu-btn{display:none;background:none;border:none;color:var(--cream);font-size:1.2rem;cursor:pointer}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:140px 7% 120px;overflow:hidden;}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.8s ease;}
+#hero-canvas.visible{opacity:1}
+.hero-content{position:relative;z-index:2}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--amber);margin-bottom:36px;animation:fadeUp 1s ease both;}
+.hero-label::before,.hero-label::after{content:'';width:28px;height:1px;background:var(--amber);opacity:0.5}
+.hero h1{font-family:var(--serif);font-size:clamp(4rem,10vw,9rem);font-weight:400;line-height:0.95;color:var(--cream);animation:fadeUp 1s 0.12s ease both;letter-spacing:-0.02em;}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-rule{width:1px;height:64px;margin:44px auto;background:linear-gradient(to bottom,transparent,var(--amber),transparent);animation:fadeUp 1s 0.24s ease both;}
+.hero-sub{font-size:clamp(0.88rem,1.8vw,1rem);color:var(--parchment);opacity:0.72;letter-spacing:0.04em;max-width:520px;line-height:1.95;margin:0 auto;animation:fadeUp 1s 0.32s ease both;}
+.hero-cta{margin-top:52px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s 0.44s ease both;}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;}
+.btn-primary{background:var(--amber);color:var(--void);font-weight:600}
+.btn-primary:hover{background:var(--amber-bright);transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,160,48,0.22)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s 0.7s ease both;}
+.scroll-hint span{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.25}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--amber),transparent);animation:scrollPulse 2.4s ease infinite}
+section{padding:120px 7%;position:relative;z-index:2}
+.section-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;opacity:0.9;}
+.section-title{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.2rem);font-weight:400;line-height:1.05;color:var(--cream);}
+.section-title em{font-style:italic;color:var(--amber)}
+.divider{width:40px;height:1px;background:linear-gradient(to right,var(--amber),transparent);margin:28px 0;opacity:0.7}
+#about{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.about-body{font-size:1rem;line-height:2;color:var(--parchment);opacity:0.85;margin-bottom:22px;}
+.about-body strong{color:var(--amber);font-weight:500;opacity:1}
+.resume-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(232,160,48,0.3);padding-bottom:4px;transition:all 0.25s;margin-top:10px;}
+.resume-link:hover{border-color:var(--amber);letter-spacing:0.22em}
+.skills-col{display:flex;flex-direction:column}
+.skill-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border-dim);}
+.skill-row:first-child{border-top:1px solid var(--border-dim)}
+.skill-name{font-size:0.84rem;letter-spacing:0.04em;color:var(--parchment);opacity:0.75}
+.skill-bar{width:100px;height:2px;background:rgba(232,160,48,0.1);position:relative;overflow:hidden;}
+.skill-bar-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(to right,var(--amber-dim),var(--amber));border-radius:1px;}
+.projects-header{padding:120px 7% 60px;position:relative;z-index:2}
+.project-item{border-top:1px solid var(--border-dim)}
+.project-item:last-child{border-bottom:1px solid var(--border-dim)}
+.project-inner{padding:80px 7%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;transition:background 0.5s;}
+.project-item:hover .project-inner{background:rgba(232,160,48,0.018)}
+.project-num{font-family:var(--mono);font-size:0.75rem;color:var(--amber);opacity:0.4;letter-spacing:0.1em;margin-bottom:16px;}
+.project-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--cream);line-height:1.05;margin-bottom:18px;}
+.project-title em{font-style:italic;color:var(--amber)}
+.project-type{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--amber);margin-bottom:22px;display:block;opacity:0.75;}
+.project-desc{font-size:0.93rem;line-height:1.95;color:var(--parchment);opacity:0.82;margin-bottom:26px}
+.project-desc-preview{margin-bottom:0}
+.project-desc-full{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease,margin-top 0.3s ease;margin-top:0;}
+.project-info.expanded .project-desc-full{max-height:700px;opacity:0.78;margin-top:18px}
+.project-expand{display:inline-flex;align-items:center;gap:10px;padding:0 0 22px;background:none;border:none;color:var(--amber);font-family:var(--mono);font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;}
+.project-expand i{transition:transform 0.25s ease}
+.project-info.expanded .project-expand i{transform:rotate(180deg)}
+.project-expand:hover{color:var(--amber-bright)}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--border);color:var(--amber);opacity:0.7;}
+.project-links{display:flex;flex-wrap:wrap;gap:16px}
+.project-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;color:var(--cream);opacity:0.42;transition:all 0.2s;}
+.project-link:hover{opacity:1;color:var(--amber)}
+.platform-badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;background:rgba(232,160,48,0.08);border:1px solid rgba(232,160,48,0.2);color:var(--amber);padding:5px 12px;margin-bottom:16px;}
+.media-placeholder{min-height:260px;display:flex;align-items:center;justify-content:center;padding:32px;border:1px dashed rgba(232,160,48,0.2);background:linear-gradient(135deg,rgba(232,160,48,0.04),rgba(196,92,30,0.02));text-align:center;color:var(--parchment);opacity:0.6;line-height:1.7;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.04em;}
+.video-frame{position:relative;border:1px solid var(--border);overflow:hidden;background:#000}
+.video-frame::before{content:'';display:block;padding-top:56.25%}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.featured-project{margin:0 7%;padding:0;border:1px solid var(--border);background:linear-gradient(135deg,var(--chamber) 0%,var(--panel) 100%);position:relative;overflow:hidden;z-index:2;}
+.featured-project::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 20%,rgba(232,160,48,0.07),transparent);pointer-events:none;}
+.featured-inner{padding:70px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.featured-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;background:rgba(232,160,48,0.1);border:1px solid rgba(232,160,48,0.25);color:var(--amber);padding:6px 14px;margin-bottom:24px;}
+.featured-title{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;line-height:1.0;color:var(--cream);margin-bottom:24px;}
+.featured-title em{font-style:italic;color:var(--amber)}
+.featured-desc{font-size:0.95rem;line-height:1.95;color:var(--parchment);opacity:0.82;margin-bottom:28px}
+.arch-diagram{width:100%;padding:28px;background:rgba(0,0,0,0.3);border:1px solid var(--border);font-family:var(--mono);font-size:0.72rem;color:var(--parchment);line-height:2.1;letter-spacing:0.04em;}
+.arch-line-amber{color:var(--amber)}
+.arch-line-muted{opacity:0.38}
+.mentor-section{background:var(--chamber);border-top:1px solid var(--border-dim);border-bottom:1px solid var(--border-dim);position:relative;z-index:2;}
+.mentor-inner{padding:120px 7% 60px;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start;}
+.mentor-stats{display:flex;flex-direction:column;gap:0}
+.stat-row{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;padding:28px 0;border-bottom:1px solid var(--border-dim);}
+.stat-row:first-child{border-top:1px solid var(--border-dim)}
+.stat-number{font-family:var(--serif);font-size:2.8rem;font-weight:400;color:var(--amber);line-height:1;letter-spacing:-0.02em;}
+.stat-detail{padding-top:6px}
+.stat-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);opacity:0.55;margin-bottom:4px;}
+.stat-sub{font-size:0.84rem;color:var(--parchment);opacity:0.45;line-height:1.6}
+.mentor-body{font-size:1rem;line-height:2;color:var(--parchment);opacity:0.82;margin-bottom:20px}
+.mentor-cards-wrap{padding:0 0 80px}
+.mentor-card{margin:0 7% 24px;border:1px solid var(--border);background:linear-gradient(135deg,var(--chamber) 0%,var(--panel) 100%);position:relative;overflow:hidden;transition:border-color 0.3s;}
+.mentor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0.4;}
+.mentor-card:hover{border-color:rgba(232,160,48,0.25)}
+.mentor-card-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:52px;align-items:start;}
+.mentor-card-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px;}
+.mentor-card-batch{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);background:rgba(232,160,48,0.08);border:1px solid rgba(232,160,48,0.18);padding:4px 10px;}
+.mentor-card-role{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);opacity:0.4;}
+.mentor-card-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:var(--cream);line-height:1.1;margin-bottom:18px;}
+.mentor-card-title em{font-style:italic;color:var(--amber)}
+.mentor-card-desc{font-size:0.91rem;line-height:1.95;color:var(--parchment);opacity:0.8;margin-bottom:22px;}
+.mentor-card-highlights{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.mch-item{display:flex;align-items:center;gap:10px;font-size:0.84rem;color:var(--parchment);opacity:0.7;}
+.mch-item i{color:var(--amber);opacity:0.7;width:14px;text-align:center;font-size:0.75rem}
+.mentor-card-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.mentor-card-links{display:flex;gap:16px;flex-wrap:wrap}
+.mentor-card-right{padding-top:4px}
+#experience{background:transparent}
+.exp-grid{display:grid;grid-template-columns:1fr 2fr;gap:90px;margin-top:60px}
+.exp-timeline{display:flex;flex-direction:column}
+.exp-item{padding:30px 0;border-bottom:1px solid var(--border-dim)}
+.exp-item:first-child{border-top:1px solid var(--border-dim)}
+.exp-period{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);opacity:0.8;margin-bottom:8px;}
+.exp-role{font-family:var(--serif);font-size:1.2rem;color:var(--cream);line-height:1.2;margin-bottom:4px}
+.exp-company{font-family:var(--mono);font-size:0.72rem;color:var(--parchment);opacity:0.4;letter-spacing:0.06em}
+.exp-detail{font-size:0.92rem;line-height:1.95;color:var(--parchment);opacity:0.8}
+.exp-detail ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.exp-detail li{padding-left:22px;position:relative}
+.exp-detail li::before{content:'›';position:absolute;left:0;color:var(--amber);opacity:0.85;font-size:1.1rem;line-height:1.6}
+.exp-section-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--parchment);opacity:0.3;margin-bottom:16px;}
+.game-aside{margin:0 7% 0;padding:52px;border:1px solid var(--border);background:linear-gradient(135deg,rgba(13,13,22,0.9),rgba(17,17,28,0.9));display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;position:relative;z-index:2;overflow:hidden;}
+.game-aside::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(232,160,48,0.5) 40%,rgba(232,160,48,0.5) 60%,transparent 100%);}
+.game-aside::after{content:'';position:absolute;bottom:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,48,0.05),transparent 70%);pointer-events:none;}
+#game-projects .project-item:first-child{border-top:none}
+#game-projects{border-top:1px solid var(--border-dim)}
+.game-aside-icon{width:72px;height:72px;border-radius:18px;background:rgba(232,160,48,0.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:1.8rem;}
+.game-aside-label{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);opacity:0.65;margin-bottom:8px;}
+.game-aside-title{font-family:var(--serif);font-size:1.6rem;color:var(--cream);margin-bottom:12px;line-height:1.2;}
+.game-aside-desc{font-size:0.88rem;color:var(--parchment);opacity:0.55;line-height:1.8;max-width:500px}
+.game-aside-links{display:flex;gap:20px;margin-top:18px;flex-wrap:wrap}
+.game-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;color:var(--parchment);opacity:0.45;transition:all 0.2s;}
+.game-link:hover{opacity:1;color:var(--amber)}
+#contact{text-align:center}
+.contact-intro{font-size:1rem;color:var(--parchment);opacity:0.58;max-width:480px;margin:24px auto 52px;line-height:1.9;}
+.contact-links{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.contact-link{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:var(--cream);transition:all 0.2s;}
+.contact-link i{font-size:1.1rem;color:var(--amber);opacity:0.6;transition:all 0.2s}
+.contact-link span{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.35;}
+.contact-link:hover i{opacity:1;color:var(--amber-bright)}
+.contact-link:hover span{opacity:0.75}
+.contact-email{margin-top:50px}
+.contact-email a{font-family:var(--serif);font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:400;font-style:italic;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(232,160,48,0.28);padding-bottom:4px;transition:border-color 0.25s,color 0.25s;}
+.contact-email a:hover{border-color:var(--amber);color:var(--amber)}
+footer{padding:30px 7%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-dim);flex-wrap:wrap;gap:10px;position:relative;z-index:2;}
+footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--parchment);opacity:0.18;}
+.footer-role{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);opacity:0.22;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:0.25}50%{opacity:1}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+@media(max-width:900px){
+  #about{grid-template-columns:1fr}.project-inner{grid-template-columns:1fr;gap:40px}
+  .featured-inner{grid-template-columns:1fr;padding:44px}.mentor-inner{grid-template-columns:1fr}
+  .mentor-card-inner{grid-template-columns:1fr;padding:36px;gap:32px}
+  .exp-grid{grid-template-columns:1fr}.game-aside{grid-template-columns:1fr}
+  .nav-links{display:none}.nav-menu-btn{display:block}
+  .cursor,.cursor-ring{display:none}body{cursor:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="bg-texture"></div>
+<div class="noise"></div>
+
+<nav id="nav">
+  <a href="#top" class="nav-wordmark">Aryan Khurana</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#mentorship">Mentorship</a></li>
+    <li><a href="#gamedev">Game Dev</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</nav>
+
+<section class="hero" id="top">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-label">AI Integration Engineer</div>
+    <h1>Aryan<br><em>Khurana</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Building intelligent systems that work in production - RAG pipelines, multilingual AI, and full-stack applications that connect ideas to users.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">View Work <i class="fas fa-arrow-right"></i></a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-left reveal">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Builder.<br><em>Integrator.</em></h2>
+    <div class="divider"></div>
+    <p class="about-body">I build AI systems end-to-end - from architecture decisions to deployment. My focus is on <strong>integration</strong>: connecting language models, vector databases, APIs, and interfaces into products that actually work outside of demos.</p>
+    <p class="about-body">I've mentored <strong>150+ engineers</strong> across 6 batches at Infosys Springboard through the full product lifecycle - IVR systems, EHR platforms, multilingual speech AI - from first commit to live deployment.</p>
+    <p class="about-body">Outside of AI, I ship games. Two titles live on Google Play, tools on GitHub and (soon) the Unity Asset Store. The systems thinking carries over.</p>
+    <a href="Aryan_Khurana_Resume__.pdf" download class="resume-link"><i class="fas fa-file-alt"></i> Download Resume</a>
+  </div>
+  <div class="skills-col reveal reveal-delay-2">
+    <div class="skill-row"><span class="skill-name">RAG &amp; Vector Search</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">LLM Integration (Groq, Cohere, Azure AI)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">FastAPI &amp; Python Backend</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">Prompt Engineering &amp; Chain Design</span><div class="skill-bar"><div class="skill-bar-fill" style="width:87%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">Azure Speech &amp; Cognitive Services</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">MongoDB &amp; Hybrid Retrieval</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">React &amp; Full-Stack</span><div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">API Design &amp; System Integration</span><div class="skill-bar"><div class="skill-bar-fill" style="width:84%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">Streaming Responses &amp; Async Pipelines</span><div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">Deployment (Vercel, Render, Cloud)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">JWT Auth &amp; Security</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+    <div class="skill-row"><span class="skill-name">Unity Engine &amp; C#</span><div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div></div>
+  </div>
+</section>
+
+<div class="projects-header reveal" id="work">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Projects</h2>
+</div>
+
+<div class="featured-project reveal">
+  <div class="featured-inner">
+    <div>
+      <div class="featured-badge"><i class="fas fa-brain"></i> &nbsp; Featured AI Project</div>
+      <h2 class="featured-title">AI Second<br><em>Brain</em></h2>
+      <p class="featured-desc">A full-stack RAG application that lets users store personal notes and query them through a conversational interface - answers grounded in their own data, not generic knowledge.</p>
+      <p class="featured-desc">Built the complete pipeline: JWT auth, FastAPI backend, Cohere embeddings, hybrid vector + keyword retrieval in MongoDB, Groq LLM for generation, and streaming responses to a React frontend. Deployed on Vercel + Render.</p>
+      <div class="project-tags" style="margin-bottom:26px">
+        <span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Cohere</span><span class="tag">Groq</span><span class="tag">MongoDB</span><span class="tag">React</span><span class="tag">JWT</span><span class="tag">Vercel</span><span class="tag">Render</span>
+      </div>
+      <div class="project-links">
+        <a id="link-second-brain-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+        <a id="link-second-brain-live" href="#" target="_blank" class="project-link" style="display:none"><i class="fas fa-globe"></i> Live Demo</a>
+      </div>
+    </div>
+    <div>
+      <div class="arch-diagram">
+        <div><span class="arch-line-amber">USER QUERY</span></div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+        <div><span class="arch-line-amber">FastAPI</span> <span class="arch-line-muted">- JWT Auth - Session Mgmt</span></div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+        <div><span class="arch-line-amber">Cohere Embeddings</span></div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+        <div><span class="arch-line-amber">MongoDB</span> <span class="arch-line-muted">- Hybrid Retrieval</span></div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Vector similarity search</div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Keyword text search</div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+        <div><span class="arch-line-amber">Groq LLM</span> <span class="arch-line-muted">- RAG Generation</span></div>
+        <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+        <div><span class="arch-line-amber">Streaming Response</span> <span class="arch-line-muted">-&gt; React UI</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mentor-section" id="mentorship">
+  <div class="mentor-inner">
+    <div>
+      <p class="section-label reveal">Mentorship</p>
+      <h2 class="section-title reveal" style="margin-bottom:0">Teaching<br><em>by building.</em></h2>
+      <div class="divider reveal"></div>
+      <p class="mentor-body reveal">I was the sole mentor for 6 independent engineering batches at Infosys Springboard, guiding interns through the delivery of production-grade AI systems from architecture to deployment.</p>
+      <p class="mentor-body reveal">My role was not to write the code. It was to define the architecture, set the standards, unblock the team at every decision point, and make sure what they shipped actually worked in the real world. Every project below was built by my students. I guided it.</p>
+    </div>
+    <div class="mentor-stats reveal reveal-delay-2">
+      <div class="stat-row"><div class="stat-number">6</div><div class="stat-detail"><p class="stat-label">Batches Mentored</p><p class="stat-sub">6 independent cohorts, each delivering a distinct production-grade AI system</p></div></div>
+      <div class="stat-row"><div class="stat-number">150+</div><div class="stat-detail"><p class="stat-label">Engineers Guided</p><p class="stat-sub">~25 engineers per batch, mentored through full lifecycle - architecture to deployment</p></div></div>
+      <div class="stat-row"><div class="stat-number">3</div><div class="stat-detail"><p class="stat-label">Distinct AI Systems</p><p class="stat-sub">Conversational IVR, GenAI-powered EHR and Imaging, Speech-to-Speech translation</p></div></div>
+      <div class="stat-row"><div class="stat-number">50+</div><div class="stat-detail"><p class="stat-label">Languages in Production</p><p class="stat-sub">Azure-powered speech AI supporting 50+ languages with sub-second latency</p></div></div>
+    </div>
+  </div>
+
+  <div class="mentor-cards-wrap">
+    <p class="section-label reveal" style="padding:0 7% 28px">Projects I Mentored</p>
+
+    <div class="mentor-card reveal">
+      <div class="mentor-card-inner">
+        <div class="mentor-card-left">
+          <div class="mentor-card-meta">
+            <span class="mentor-card-role">Sole Mentor &amp; Architect</span>
+          </div>
+          <h3 class="mentor-card-title">Ultra Audio Studio<br><em>Speech-to-Speech AI</em></h3>
+          <p class="mentor-card-desc">A production-grade multilingual speech translation platform that converts spoken language to text, translates it, and synthesises natural speech output - in real time, across 50+ languages. My batches built the entire pipeline: live stream translation, video auto-dubbing, remote meeting translation, and a full analytics dashboard.</p>
+          <div class="mentor-card-highlights">
+            <div class="mch-item"><i class="fas fa-bolt"></i> Sub-second end-to-end latency</div>
+            <div class="mch-item"><i class="fas fa-globe"></i> 50+ languages via Azure NMT</div>
+            <div class="mch-item"><i class="fas fa-video"></i> Auto-dubbing with emotion and pitch control</div>
+            <div class="mch-item"><i class="fas fa-chart-line"></i> Live analytics and session tracking</div>
+          </div>
+          <div class="mentor-card-stack">
+            <span class="tag">Azure Speech SDK</span><span class="tag">Azure Translator</span><span class="tag">Azure TTS</span><span class="tag">FastAPI</span><span class="tag">WebSockets</span><span class="tag">Streamlit</span><span class="tag">Python</span><span class="tag">Docker</span>
+          </div>
+          <div class="mentor-card-links">
+            <a id="link-speech-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+        <div class="mentor-card-right">
+          <div class="arch-diagram">
+            <div><span class="arch-line-amber">SPEECH INPUT</span> <span class="arch-line-muted">(any of 50+ languages)</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Azure Speech SDK</span> <span class="arch-line-muted">- ASR (Speech to Text)</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Azure Translator</span> <span class="arch-line-muted">- NMT (Text to Text)</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Azure TTS</span> <span class="arch-line-muted">- Neural Voice Synthesis</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Emotion control</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Speed and pitch adjustment</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">FastAPI + WebSockets</span> <span class="arch-line-muted">- Streaming</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Streamlit UI</span> <span class="arch-line-muted">- Live / Dubbing / Analytics</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-card reveal">
+      <div class="mentor-card-inner">
+        <div class="mentor-card-left">
+          <div class="mentor-card-meta">
+            <span class="mentor-card-role">Sole Mentor &amp; Architect</span>
+          </div>
+          <h3 class="mentor-card-title">AI-Powered EHR &amp;<br><em>Imaging Documentation</em></h3>
+          <p class="mentor-card-desc">A GenAI-powered healthcare system combining two critical functions: enhanced medical imaging via generative models (denoising and upscaling X-rays, MRIs, CTs) and automated clinical documentation (converting doctor observations into structured notes with automatic ICD-10 coding). Integrated with Azure OpenAI for enterprise-grade security.</p>
+          <div class="mentor-card-highlights">
+            <div class="mch-item"><i class="fas fa-x-ray"></i> GenAI image reconstruction for MRI, CT, X-Ray</div>
+            <div class="mch-item"><i class="fas fa-file-medical-alt"></i> Auto-generated clinical notes from doctor input</div>
+            <div class="mch-item"><i class="fas fa-code"></i> Automatic ICD-10 code suggestion</div>
+            <div class="mch-item"><i class="fas fa-shield-alt"></i> Patient data anonymisation and compliance</div>
+          </div>
+          <div class="mentor-card-stack">
+            <span class="tag">Azure OpenAI</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">DICOM / pydicom</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+          </div>
+          <div class="mentor-card-links">
+            <a id="link-ehr-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+        <div class="mentor-card-right">
+          <div class="arch-diagram">
+            <div><span class="arch-line-amber">INPUT</span> <span class="arch-line-muted">- Medical images + Doctor observations</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Module 1: Data Preprocessing</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anonymisation - Labelling - DICOM</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Module 2: Imaging Enhancement</div>
+            <div><span class="arch-line-amber">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GenAI Reconstruction</span> <span class="arch-line-muted">- Upscaling</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Module 3: Documentation</div>
+            <div><span class="arch-line-amber">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Azure OpenAI</span> <span class="arch-line-muted">- Notes + ICD-10</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- Module 4: Hospital Integration</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real-time inference - EHR deployment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-card reveal">
+      <div class="mentor-card-inner">
+        <div class="mentor-card-left">
+          <div class="mentor-card-meta">
+            <span class="mentor-card-role">Sole Mentor &amp; Architect</span>
+          </div>
+          <h3 class="mentor-card-title">Conversational IVR<br><em>Modernisation</em></h3>
+          <p class="mentor-card-desc">A middleware layer that modernised a legacy DTMF-based IVR system with natural language capabilities. Users can speak or type queries instead of pressing keys - the system detects intent and routes intelligently to account management or business agent services, with graceful fallback handling for unsupported queries.</p>
+          <div class="mentor-card-highlights">
+            <div class="mch-item"><i class="fas fa-brain"></i> Keyword-based NLU intent detection engine</div>
+            <div class="mch-item"><i class="fas fa-sitemap"></i> Modular routing: ACS, BAP, and Fallback</div>
+            <div class="mch-item"><i class="fas fa-vial"></i> Full test coverage - positive, negative, fallback flows</div>
+            <div class="mch-item"><i class="fas fa-layer-group"></i> Designed for future AI/NLU upgrade path</div>
+          </div>
+          <div class="mentor-card-stack">
+            <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST APIs</span><span class="tag">Intent Detection</span><span class="tag">Postman</span><span class="tag">WebSockets</span>
+          </div>
+          <div class="mentor-card-links">
+            <a id="link-ivr-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+        <div class="mentor-card-right">
+          <div class="arch-diagram">
+            <div><span class="arch-line-amber">USER</span> <span class="arch-line-muted">(voice or typed natural language)</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">IVR Middleware</span> <span class="arch-line-muted">- POST /ivr/conversation</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Intent Detection</span> <span class="arch-line-muted">- intentHandler.js</span></div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- <span class="arch-line-amber">ACS</span> - balance, recharge, card ops</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- <span class="arch-line-amber">BAP</span> - loans, statements, bills</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;+-- <span class="arch-line-amber">Fallback</span> - unknown queries (graceful)</div>
+            <div class="arch-line-muted">&nbsp;&nbsp;&nbsp;|</div>
+            <div><span class="arch-line-amber">Structured JSON Response</span> <span class="arch-line-muted">-&gt; User</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="gamedev" style="position:relative;z-index:2">
+  <div class="game-aside reveal" style="margin-top:80px;margin-bottom:0">
+    <div class="game-aside-icon"><i class="fas fa-gamepad"></i></div>
+    <div>
+      <p class="game-aside-label">Also a Game Developer</p>
+      <h3 class="game-aside-title">Shipped titles on Google Play, itch.io and an open-source Unity tool</h3>
+      <p class="game-aside-desc">Games on the Play Store, projects on itch.io, and a Unity editor extension heading to the Asset Store. A different domain but the same discipline: ship real systems, not prototypes.</p>
+      <div class="game-aside-links">
+        <a href="https://revist-play-studios.itch.io/" target="_blank" class="game-link"><i class="fas fa-gamepad"></i> itch.io</a>
+        <a href="https://github.com/aryan0711d/UnityOptimizerPro" target="_blank" class="game-link"><i class="fab fa-github"></i> Unity Tool on GitHub</a>
+        <a href="https://play.google.com/store/apps/details?id=com.RevistPlayStudios.ookami&pcampaignid=web_share" target="_blank" class="game-link"><i class="fab fa-google-play"></i> Google Play</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-projects">
+    <div class="project-item">
+      <div class="project-inner">
+        <div class="project-info reveal">
+          <p class="project-num">01</p>
+          <span class="project-type">Unity Editor Tool - Open Source - Asset Store Preview</span>
+          <h3 class="project-title">Unity<br><em>Optimizer Pro</em></h3>
+          <p class="project-desc project-desc-preview">A one-click performance optimization toolkit for Unity that analyzes scenes and applies intelligent fixes - light clustering, shadow balancing, GPU instancing, platform presets. Includes a visual heatmap in-scene. Under review for the Unity Asset Store.</p>
+          <div class="project-desc project-desc-full">The tool analyzes the active scene and identifies common performance bottlenecks such as excessive lighting, overlapping light ranges, heavy shadow usage, and inefficient rendering configurations. It provides a one-click workflow that applies intelligent optimizations while preserving the overall visual quality of the scene. A rule-based approach combined with a heuristic scoring model evaluates performance and estimates frame rate improvements.</div>
+          <button class="project-expand" type="button" aria-expanded="false"><span>Read More</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="project-tags">
+            <span class="tag">Unity Editor</span><span class="tag">C#</span><span class="tag">Asset Store</span><span class="tag">Open Source</span><span class="tag">Performance</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/aryan0711d/UnityOptimizerPro" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://youtu.be/fHcK42beMb8" target="_blank" class="project-link"><i class="fab fa-youtube"></i> Watch Demo</a>
+          </div>
+        </div>
+        <div class="project-media reveal reveal-delay-2">
+          <div class="video-frame"><iframe src="https://www.youtube.com/embed/fHcK42beMb8" title="Unity Optimizer Pro Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-inner">
+        <div class="project-media reveal" style="order:2">
+          <div class="video-frame"><iframe src="https://www.youtube.com/embed/3zv0JYfU-Qw" title="Atmospheric Horror" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+        <div class="project-info reveal reveal-delay-2" style="order:1">
+          <p class="project-num">02</p>
+          <span class="project-type">First Person Horror - Vertical Slice</span>
+          <h3 class="project-title">Atmospheric<br><em>Horror</em></h3>
+          <p class="project-desc project-desc-preview">A first-person psychological horror prototype built around environmental transformation and dread. Dynamic lighting shifts, spatial 3D audio, and a custom controller. Scene performance improved ~200% through occlusion culling, static batching, and mixed lighting workflows.</p>
+          <div class="project-desc project-desc-full">Set inside an abandoned asylum where the player navigates dark corridors using a custom controller supporting smooth movement, sprint mechanics, and interactive elements. Visual transitions shift the environment from cold tones to intense red hues accompanied by audio cues to create tension and psychological discomfort.</div>
+          <button class="project-expand" type="button" aria-expanded="false"><span>Read More</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="project-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Lighting Design</span><span class="tag">3D Audio</span><span class="tag">Post Processing</span>
+          </div>
+          <div class="project-links">
+            <a href="https://youtu.be/3zv0JYfU-Qw" target="_blank" class="project-link"><i class="fab fa-youtube"></i> Watch Trailer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-inner">
+        <div class="project-info reveal">
+          <p class="project-num">03</p>
+          <span class="platform-badge"><i class="fab fa-google-play"></i> &nbsp; Live on Google Play</span>
+          <span class="project-type" style="margin-top:10px">Arcade Mobile - Published</span>
+          <h3 class="project-title">OO<em>Kami</em></h3>
+          <p class="project-desc project-desc-preview">A reflex-based arcade game published on the Play Store. In-game shop with cosmetic unlocks, rewarded ads system, and a precision scoring loop designed for short sessions with high replayability.</p>
+          <div class="project-desc project-desc-full">Built around a precision scoring loop, an in-game shop with cosmetic unlocks, and a rewarded ads system. Designed for short sessions with high replayability - demonstrates experience with mobile game development, monetization integration, and systems that encourage long-term player engagement.</div>
+          <button class="project-expand" type="button" aria-expanded="false"><span>Read More</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+          <div class="project-tags">
+            <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Rewarded Ads</span><span class="tag">In-Game Shop</span><span class="tag">Google Play</span>
+          </div>
+          <div class="project-links">
+            <a href="https://play.google.com/store/apps/details?id=com.RevistPlayStudios.ookami&pcampaignid=web_share" target="_blank" class="project-link"><i class="fab fa-google-play"></i> Google Play</a>
+          </div>
+        </div>
+        <div class="project-media reveal reveal-delay-2">
+          <div class="media-placeholder" style="min-height:280px">OO-Kami gameplay screenshots<br><span style="opacity:0.4;font-size:0.65rem;margin-top:4px;display:block">Add image paths in portfolio-config.js</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've<br><em>Worked</em></h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-timeline">
+      <div class="exp-item reveal">
+        <p class="exp-period">Aug 2025 - Present</p>
+        <p class="exp-role">Technical Mentor</p>
+        <p class="exp-company">Infosys Springboard</p>
+      </div>
+      <div class="exp-item reveal reveal-delay-1">
+        <p class="exp-period">Dec 2025 - Mar 2026</p>
+        <p class="exp-role">Backend Engineering Intern</p>
+        <p class="exp-company">HuesFab</p>
+      </div>
+      <div class="exp-item reveal reveal-delay-2">
+        <p class="exp-period">2020 - Present</p>
+        <p class="exp-role">Indie Game Developer</p>
+        <p class="exp-company">Revist Play Studios</p>
+      </div>
+    </div>
+    <div class="exp-detail reveal reveal-delay-2">
+      <p class="exp-section-label">Infosys Springboard</p>
+      <ul>
+        <li>Led 6 independent developer batches (150+ engineers) through complete AI platform builds - IVR systems, EHR medical platforms, speech-to-speech AI spanning 50+ languages via Azure, and imaging documentation systems.</li>
+        <li>Guided architecture decisions, refactored production codebases, and enforced clean architecture standards across all delivered projects.</li>
+        <li>Mentored teams on Git workflows, system design, feature scoping, and final deployment - several students have publicly credited the mentorship on LinkedIn.</li>
+        <li>Projects included imaging documentation systems and real-time AI streaming pipelines deployed end-to-end.</li>
+      </ul>
+      <p class="exp-section-label" style="margin-top:36px">HuesFab</p>
+      <ul>
+        <li>Completed a backend engineering internship at HuesFab, a Jaipur-based menswear brand, supporting internal product and e-commerce workflows during a high-growth phase.</li>
+        <li>Contributed to backend features and integrations that improved day-to-day operational reliability across the company's digital systems.</li>
+        <li>Worked in a professional team setting, translating business requirements into practical implementation details and maintainable engineering output.</li>
+      </ul>
+      <p class="exp-section-label" style="margin-top:36px">Revist Play Studios</p>
+      <ul>
+        <li>Designed, built, and shipped multiple Unity titles across mobile and PC - two live on Google Play, two on itch.io.</li>
+        <li>Managed full production pipelines: gameplay systems, optimization, UI, deployment, and post-launch updates.</li>
+        <li>Built and open-sourced UnityOptimizerPro, a performance toolkit currently under review for the Unity Asset Store.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's build<br><em>something.</em></h2>
+    <p class="contact-intro">Open to AI engineering roles, integration projects, and consulting. If you're building something with language models - locally or remote - let's talk.</p>
+  </div>
+  <div class="contact-links reveal reveal-delay-1">
+    <a href="https://www.linkedin.com/in/aryan-khurana-7468203ab/" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+    <a href="https://github.com/aryan0711d" target="_blank" class="contact-link"><i class="fab fa-github"></i><span>GitHub</span></a>
+    <a id="contact-website" href="#" target="_blank" class="contact-link" style="display:none"><i class="fas fa-globe"></i><span>Website</span></a>
+    <a href="https://revist-play-studios.itch.io/" target="_blank" class="contact-link"><i class="fas fa-gamepad"></i><span>itch.io</span></a>
+  </div>
+  <div class="contact-email reveal reveal-delay-2">
+    <a href="mailto:Aryan0711d@gmail.com">Aryan0711d@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Aryan Khurana. All rights reserved.</p>
+  <span class="footer-role">AI Integration Engineer</span>
+</footer>
+
+<script src="portfolio-config.js"></script>
+<script>
+(function(){
+  if(typeof window.portfolioConfig==='undefined') return;
+  const c=window.portfolioConfig.links||{};
+  const mc=window.portfolioConfig.mentored||{};
+  function applyLink(id,url){
+    if(!url||url==='#') return;
+    const el=document.getElementById(id);
+    if(el){el.href=url;el.style.display='inline-flex';}
+  }
+  applyLink('link-second-brain-github',c.secondBrainGithub);
+  applyLink('link-second-brain-live',c.secondBrainLiveApp);
+  applyLink('link-speech-github',mc.speechGithub);
+  applyLink('link-ehr-github',mc.ehrGithub);
+  applyLink('link-ivr-github',mc.ivrGithub);
+  applyLink('contact-website',c.secondBrainLiveApp);
+})();
+
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H;
+  const PC=55,NC=7;
+  const A='rgba(232,160,48,',R='rgba(196,92,30,';
+  let particles=[],nodes=[],connections=[],tick=0;
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;}
+  function mkP(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.18,vy:-Math.random()*0.25-0.08,size:Math.random()*1.5+0.3,alpha:Math.random()*0.25+0.04,life:0,maxLife:280+Math.random()*300,color:Math.random()>0.6?A:R};}
+  function mkN(i){const angle=(i/NC)*Math.PI*2,r=Math.min(W,H)*0.28;return{bx:W/2+Math.cos(angle)*r,by:H/2+Math.sin(angle)*r,x:0,y:0,ox:(Math.random()-0.5)*18,oy:(Math.random()-0.5)*18,phase:Math.random()*Math.PI*2,speed:0.0004+Math.random()*0.0003,size:2.5+Math.random()*2,pulsePhase:Math.random()*Math.PI*2};}
+  function init(){
+    particles=Array.from({length:PC},mkP);
+    nodes=Array.from({length:NC},(_,i)=>mkN(i));
+    nodes.push({bx:W/2,by:H/2,x:W/2,y:H/2,ox:0,oy:0,phase:0,speed:0.0003,size:4,pulsePhase:0});
+    connections=[];const last=nodes.length-1;
+    for(let i=0;i<NC;i++){connections.push([i,last]);connections.push([i,(i+1)%NC]);if(i%2===0)connections.push([i,(i+3)%NC]);}
+  }
+  function glow(x,y,r,c,a){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c+a+')');g.addColorStop(1,c+'0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();}
+  function grid(){ctx.save();const sp=80,ox=(tick*0.012)%sp;ctx.lineWidth=0.4;for(let y=0;y<H;y+=sp){const f=1-Math.abs(y-H/2)/(H/2);ctx.strokeStyle=`rgba(232,160,48,${0.025*f})`;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}for(let x=-ox;x<W;x+=sp){const f=1-Math.abs(x-W/2)/(W/2);ctx.strokeStyle=`rgba(232,160,48,${0.025*f})`;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}ctx.restore();}
+  function frame(){
+    tick++;ctx.clearRect(0,0,W,H);
+    const b=0.5+0.5*Math.sin(tick*0.008);
+    glow(W/2,H/2,Math.min(W,H)*0.55,A,0.028+0.012*b);glow(W*0.15,H*0.2,Math.min(W,H)*0.3,R,0.012+0.006*b);glow(W*0.88,H*0.8,Math.min(W,H)*0.28,A,0.014*b);
+    grid();
+    nodes.forEach(n=>{n.x=n.bx+n.ox*Math.cos(tick*n.speed+n.phase);n.y=n.by+n.oy*Math.sin(tick*n.speed+(n.phase||0)*0.7);});
+    connections.forEach(([a,b])=>{const na=nodes[a],nb=nodes[b],dx=nb.x-na.x,dy=nb.y-na.y,dist=Math.sqrt(dx*dx+dy*dy),sig=((tick*0.6)%dist)/dist,g=ctx.createLinearGradient(na.x,na.y,nb.x,nb.y);g.addColorStop(0,A+'0.04)');g.addColorStop(Math.max(0,sig-0.15),A+'0.04)');g.addColorStop(sig,A+'0.55)');g.addColorStop(Math.min(1,sig+0.12),A+'0.04)');g.addColorStop(1,A+'0.04)');ctx.strokeStyle=g;ctx.lineWidth=0.7;ctx.beginPath();ctx.moveTo(na.x,na.y);ctx.lineTo(nb.x,nb.y);ctx.stroke();});
+    nodes.forEach(n=>{const p=0.5+0.5*Math.sin(tick*0.015+(n.pulsePhase||0));glow(n.x,n.y,n.size*8,A,0.06+0.04*p);ctx.beginPath();ctx.arc(n.x,n.y,n.size,0,Math.PI*2);ctx.fillStyle=`rgba(232,160,48,${0.6+0.4*p})`;ctx.fill();ctx.beginPath();ctx.arc(n.x,n.y,n.size+3,0,Math.PI*2);ctx.strokeStyle=`rgba(232,160,48,${0.15+0.1*p})`;ctx.lineWidth=0.8;ctx.stroke();});
+    particles.forEach((p,i)=>{p.life++;if(p.life>p.maxLife){particles[i]=mkP();particles[i].y=H+2;return;}const pr=p.life/p.maxLife,al=pr<0.1?(pr/0.1):pr>0.85?((1-pr)/0.15):1;p.x+=p.vx;p.y+=p.vy;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle=p.color+(p.alpha*al)+')';ctx.fill();});
+    const sy=((tick*0.4)%H),sg=ctx.createLinearGradient(0,sy-40,0,sy+40);sg.addColorStop(0,'rgba(232,160,48,0)');sg.addColorStop(0.5,'rgba(232,160,48,0.025)');sg.addColorStop(1,'rgba(232,160,48,0)');ctx.fillStyle=sg;ctx.fillRect(0,sy-40,W,80);
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',()=>{resize();init();});
+  resize();init();frame();
+  setTimeout(()=>canvas.classList.add('visible'),200);
+})();
+
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*0.09;ry+=(my-ry)*0.09;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -50px 0px'});
+reveals.forEach(el=>io.observe(el));
+
+document.querySelectorAll('.project-expand').forEach(btn=>{btn.addEventListener('click',()=>{const info=btn.closest('.project-info');if(!info) return;const expanded=info.classList.toggle('expanded');btn.setAttribute('aria-expanded',String(expanded));btn.querySelector('span').textContent=expanded?'Show Less':'Read More';});});
+</script>
+</body>
+</html>
