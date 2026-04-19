@@ -96,6 +96,14 @@ section{padding:120px 7%;position:relative;z-index:2}
 .video-frame{position:relative;border:1px solid var(--border);overflow:hidden;background:#000}
 .video-frame::before{content:'';display:block;padding-top:56.25%}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.ookami-collage{position:relative;min-height:265px;width:100%;max-width:330px;margin-left:auto;padding:8px 2px;}
+.ookami-shot{position:absolute;width:56%;max-width:190px;aspect-ratio:9/16;border:1px solid rgba(232,160,48,0.2);border-radius:18px;overflow:hidden;background:linear-gradient(135deg,rgba(13,13,22,0.95),rgba(17,17,28,0.95));box-shadow:0 20px 40px rgba(0,0,0,0.26);transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;}
+.ookami-shot img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform 0.45s ease;}
+.ookami-shot:hover{transform:translateY(-6px) rotate(var(--card-rotate));border-color:rgba(232,160,48,0.38);box-shadow:0 30px 60px rgba(0,0,0,0.34);}
+.ookami-shot:hover img{transform:scale(1.04)}
+.ookami-shot-one{--card-rotate:-9deg;top:11%;left:2%;transform:rotate(-9deg);z-index:1;}
+.ookami-shot-two{--card-rotate:0deg;top:2%;left:25%;transform:rotate(0deg);z-index:3;}
+.ookami-shot-three{--card-rotate:8deg;top:13%;right:1%;transform:rotate(8deg);z-index:2;}
 .featured-project{margin:0 7%;padding:0;border:1px solid var(--border);background:linear-gradient(135deg,var(--chamber) 0%,var(--panel) 100%);position:relative;overflow:hidden;z-index:2;}
 .featured-project::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 20%,rgba(232,160,48,0.07),transparent);pointer-events:none;}
 .featured-inner{padding:70px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
@@ -184,6 +192,11 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
   .featured-inner{grid-template-columns:1fr;padding:44px}.mentor-inner{grid-template-columns:1fr}
   .mentor-card-inner{grid-template-columns:1fr;padding:36px;gap:32px}
   .exp-grid{grid-template-columns:1fr}.game-aside{grid-template-columns:1fr}
+  .ookami-collage{min-height:245px;max-width:300px;margin:0 auto}
+  .ookami-shot{width:58%}
+  .ookami-shot-one{top:12%;left:0}
+  .ookami-shot-two{top:0;left:21%}
+  .ookami-shot-three{top:12%;right:0}
   .nav-links{display:none}.nav-menu-btn{display:block}
   .cursor,.cursor-ring{display:none}body{cursor:auto}
 }
@@ -269,8 +282,8 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
         <span class="tag">RAG</span><span class="tag">FastAPI</span><span class="tag">Cohere</span><span class="tag">Groq</span><span class="tag">MongoDB</span><span class="tag">React</span><span class="tag">JWT</span><span class="tag">Vercel</span><span class="tag">Render</span>
       </div>
       <div class="project-links">
-        <a id="link-second-brain-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
-        <a id="link-second-brain-live" href="#" target="_blank" class="project-link" style="display:none"><i class="fas fa-globe"></i> Live Demo</a>
+        <a id="link-second-brain-github" href="https://github.com/aryan0711d/AI-Second-brain" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+        <a id="link-second-brain-live" href="https://ai-second-brain-frontend.vercel.app/" target="_blank" class="project-link"><i class="fas fa-globe"></i> Live Demo</a>
       </div>
     </div>
     <div>
@@ -331,7 +344,7 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
             <span class="tag">Azure Speech SDK</span><span class="tag">Azure Translator</span><span class="tag">Azure TTS</span><span class="tag">FastAPI</span><span class="tag">WebSockets</span><span class="tag">Streamlit</span><span class="tag">Python</span><span class="tag">Docker</span>
           </div>
           <div class="mentor-card-links">
-            <a id="link-speech-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+            <a id="link-speech-github" href="https://github.com/springboardmentor545-lgtm/Speech_to_speech_TeamB" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
         <div class="mentor-card-right">
@@ -372,7 +385,7 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
             <span class="tag">Azure OpenAI</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">DICOM / pydicom</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
           </div>
           <div class="mentor-card-links">
-            <a id="link-ehr-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+            <a id="link-ehr-github" href="https://github.com/springboardmentor545-lgtm/EHR_Gen_AI_TeamB" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
         <div class="mentor-card-right">
@@ -413,7 +426,7 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
             <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">REST APIs</span><span class="tag">Intent Detection</span><span class="tag">Postman</span><span class="tag">WebSockets</span>
           </div>
           <div class="mentor-card-links">
-            <a id="link-ivr-github" href="#" target="_blank" class="project-link" style="display:none"><i class="fab fa-github"></i> GitHub</a>
+            <a id="link-ivr-github" href="https://github.com/springboardmentor545-lgtm/TeamA-IVR-Modernization" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
         <div class="mentor-card-right">
@@ -515,7 +528,11 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
           </div>
         </div>
         <div class="project-media reveal reveal-delay-2">
-          <div class="media-placeholder" style="min-height:280px">OO-Kami gameplay screenshots<br><span style="opacity:0.4;font-size:0.65rem;margin-top:4px;display:block">Add image paths in portfolio-config.js</span></div>
+          <div class="ookami-collage" id="ookami-gallery" aria-label="OO-Kami gameplay screenshots">
+            <div class="ookami-shot ookami-shot-one"><img id="ookami-image-one" src="ookami1.png" alt="OO-Kami gameplay screenshot 1" loading="lazy"></div>
+            <div class="ookami-shot ookami-shot-two"><img id="ookami-image-two" src="ookami2.png" alt="OO-Kami gameplay screenshot 2" loading="lazy"></div>
+            <div class="ookami-shot ookami-shot-three"><img id="ookami-image-three" src="ookami3.png" alt="OO-Kami gameplay screenshot 3" loading="lazy"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -602,12 +619,20 @@ footer p{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-tr
     const el=document.getElementById(id);
     if(el){el.href=url;el.style.display='inline-flex';}
   }
+  function applyImage(id,src){
+    if(!src||src==='#') return;
+    const el=document.getElementById(id);
+    if(el){el.src=src;}
+  }
   applyLink('link-second-brain-github',c.secondBrainGithub);
   applyLink('link-second-brain-live',c.secondBrainLiveApp);
   applyLink('link-speech-github',mc.speechGithub);
   applyLink('link-ehr-github',mc.ehrGithub);
   applyLink('link-ivr-github',mc.ivrGithub);
   applyLink('contact-website',c.secondBrainLiveApp);
+  applyImage('ookami-image-one',window.portfolioConfig.images&&window.portfolioConfig.images.ookamiImageOne);
+  applyImage('ookami-image-two',window.portfolioConfig.images&&window.portfolioConfig.images.ookamiImageTwo);
+  applyImage('ookami-image-three',window.portfolioConfig.images&&window.portfolioConfig.images.ookamiImageThree);
 })();
 
 (function(){
